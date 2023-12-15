@@ -16,10 +16,10 @@ response = requests.get(
 )
 
 # Load the existing Excel workbook
-wb = openpyxl.load_workbook("Taiwan.xlsx")
+wb = openpyxl.Workbook() 
 
 # Create a new worksheet
-ws = wb.create_sheet("Path of Legends Players")
+ws = wb.active
 
 # Write the header row
 # ws.cell(row=1, column=1).value = "Rank"
@@ -40,5 +40,5 @@ for player in response.json()["items"]:
     row_number += 1
 
 # Save the existing Excel workbook
-wb.save("Taiwan.xlsx")
+wb.save("TaiwanRank.xlsx")
 print("執行完成")
