@@ -7,7 +7,11 @@
 - https://www.youtube.com/watch?v=BKnR_kre6QI&ab_channel=XiangFang
 <br>
 
-## 目前已有功能
+## 目前已有功能(皇室戰爭)
 - FindClan.py 搜尋部落資訊
+- Player.py   搜尋玩家資訊
+- TaiwanRank.py  搜尋台灣排行榜資訊
+
+## 目前已有功能(荒野亂鬥)
 - Player.py   搜尋玩家資訊
 - TaiwanRank.py  搜尋台灣排行榜資訊
