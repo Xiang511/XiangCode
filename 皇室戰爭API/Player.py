@@ -3,6 +3,7 @@ import requests
 import json
 import re
 import time
+from tqdm import tqdm
 start_time = time.time()
 API_KEY = ""
 # 填入api key
@@ -25,7 +26,7 @@ def clean_result(result):
         return ""
     return result[result.rfind(" ") + 1:].split("}")[0]
 
-for player_tag in player_tags:
+for player_tag in tqdm(player_tags):
     response = requests.get(f"https://api.clashroyale.com/v1/players/{player_tag}", headers=headers)
     
     player_data = response.json()
@@ -39,6 +40,7 @@ for player_tag in player_tags:
     player_data["name"],
     best2,
     last2])
+
 wb.save("Player.xlsx")
 
 end_time = time.time()
