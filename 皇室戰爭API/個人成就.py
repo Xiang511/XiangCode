@@ -1,18 +1,23 @@
 import openpyxl
 import requests
-import json
-import re
 import time
 from tqdm import tqdm
+
+#計算起始時間
 start_time = time.time()
+
 # enter your key
+# 前往 https://developer.clashroyale.com/#/ 取得
+
 API_KEY = ""
 headers = {
     "Authorization": "Bearer {}".format(API_KEY)
 }
 
 # enter your tag
-player_tags = [ ]
+# ex: '%2322R920J00','%2312345678'
+
+player_tags = ['%2322R920J00']
               
 wb = openpyxl.Workbook()
 ws = wb.active
@@ -32,14 +37,10 @@ for player_tag in tqdm(player_tags):
     
     player_data = response.json()
 
-
-    y=player_data["tag"]
-
     Classic12WinsCout =0 
     Grand12WinsCout = 0
 
     starPoints = player_data["starPoints"]
-
     totalExpPoints = player_data["totalExpPoints"]
     
     for Classic12Wins in player_data["badges"]:
@@ -67,12 +68,12 @@ for player_tag in tqdm(player_tags):
     #   if PracticewithFriendsCout["name"] == "Practice with Friends":
     #     PracticewithFriendsCoutCout = PracticewithFriendsCout["value"]
 
-
-
     ws.append([
-    player_data["name"],Classic12WinsCout,Grand12WinsCout,YearsPlayedCout,EmoteCollectionCout,BannerCollectionCout,starPoints,totalExpPoints])
+    player_data["name"],Classic12WinsCout,Grand12WinsCout,YearsPlayedCout,EmoteCollectionCout,BannerCollectionCout,starPoints,totalExpPoints
+    ])
 
-wb.save("TCRS.xlsx")
+wb.save("個人成就.xlsx")
 
+#計算結束時間
 end_time = time.time()
 print(f"執行時間：{end_time - start_time}")
