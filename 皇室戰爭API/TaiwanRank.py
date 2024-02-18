@@ -1,20 +1,26 @@
-import json
 import requests
 import openpyxl
 import datetime
+import time
 from tqdm import tqdm
-# Set the API key and headers
+
+#計算起始時間
+start_time = time.time()
+
+# 設定 API 金鑰
+# 前往 https://developer.clashroyale.com/#/ 取得
+
 API_KEY = ""
 headers = {
     "Authorization": "Bearer {}".format(API_KEY)
 }
 
-# Make the request
 response = requests.get(
     "https://api.clashroyale.com/v1/locations/57000228/pathoflegend/players",
     headers=headers,
 )
 
+#   取得現在時間
 now = datetime.datetime.now()
 now_str = now.strftime("%Y-%m-%d")
 
@@ -33,4 +39,7 @@ for player in tqdm(response.json()["items"]):
     row_number += 1
 
 wb.save(now_str+".xlsx")
-print("執行完成")
+
+#計算結束時間
+end_time = time.time()
+print(f"執行時間：{end_time - start_time}")
