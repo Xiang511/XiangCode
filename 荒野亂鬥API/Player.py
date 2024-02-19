@@ -1,14 +1,23 @@
 import openpyxl
 import requests
 import json
-import re
 import time
+from tqdm import tqdm
+
+# 計算起始時間
 start_time = time.time()
+
+# 設定 API 金鑰
+# 前往 https://developer.clashroyale.com/#/ 取得
+
 API_KEY = ""
-# 填入api key
+
 headers = {
     "Authorization": "Bearer {}".format(API_KEY)
 }
+
+# enter your tag
+# ex: '%2322R920J00','%2312345678'
 
 player_tags = ["%2322CU2P2V","%23PL2LQJJU"]
 
@@ -31,7 +40,7 @@ def clean_result(result):
         return ""
     return result[result.rfind(" ") + 1:].split("}")[0]
 
-for player_tag in player_tags:
+for player_tag in tqdm(player_tags):
     response = requests.get(f"https://api.brawlstars.com/v1/players/{player_tag}", headers=headers)
     
     player_data = response.json()
@@ -58,7 +67,9 @@ for player_tag in player_tags:
         bestRoboRumbleTime,
         bestTimeAsBigBrawler,
         ])
+    
 wb.save("Player.xlsx")
 
+#計算結束時間
 end_time = time.time()
 print(f"執行時間：{end_time - start_time}")
