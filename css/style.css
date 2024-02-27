@@ -259,7 +259,9 @@ img{
 .Function span{
     font-size: 1.2em;
 }
-.introduction .item .txt{
+
+/* 2024-2-27 */
+.introduction .item a{
     width: 80%;
     margin: 1em auto auto auto;
     background: #fff;
@@ -269,9 +271,11 @@ img{
     padding: 30px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.introduction .item .txt:hover{
+.introduction .item a:hover{
     background: #ccc;
 }
+/* 2024-2-27 */
+
 .introduction .img-item{
     width: 80%;
     margin: 1em auto auto auto;
