@@ -384,3 +384,9 @@ img{
         display: block;
     }
 }
+
+
+.bxl-python:before {
+   font-size: 38px;
+   vertical-align: middle;
+}
